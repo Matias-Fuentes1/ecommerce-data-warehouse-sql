@@ -50,6 +50,12 @@ fact_sales: Contiene las ventas realizadas.
 - Cohort analysis de clientes
 - Cohort analysis de revenue
 
+# Hallazgos obtenidos 
+Algunos hallazgos obtenidos del análisis:
+- * Una pequeña proporción de clientes genera una gran parte del revenue total.
+- * Los clientes con mayor frecuencia de compra también presentan el mayor valor monetario.
+- * La retención de clientes disminuye significativamente después de los primeros meses.
+- * Algunos productos concentran gran parte de las ventas, indicando una posible estrategia de productos estrella.
 
 # Tecnologias utilizadas 
 PostgreSQL → transformación y análisis de datos
