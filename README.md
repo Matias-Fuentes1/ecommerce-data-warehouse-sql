@@ -5,8 +5,8 @@ El objetivo del proyecto es transformar datos transaccionales en información ac
 ## El flujo del proyecto incluye:
 - Exploración inicial del dataset
 - Limpieza y transformación de datos
-- Modelado de datos (Star Schema)
+- Modelado de datos (Esquema estrella)
 - Análisis con SQL
-- Segmentación de clientes (RFM)
-- Análisis de cohortes
+- Segmentación de clientes (RFM: Recencia, Frecuencia, Monetaria)
+- Análisis de cohortes (Retencion de los clientes a lo largo del tiempo 
 - Visualización de KPIs en Power BI
