@@ -1,41 +1,161 @@
-#  Online Retail Analytics: End-to-End BI Solution
+# Online Retail Analytics Project (SQL + Power BI)
 
-Este proyecto transforma datos transaccionales en bruto de un minorista del Reino Unido en un ecosistema de BI robusto. El enfoque principal fue la **segmentación avanzada de clientes (RFM)** y el **análisis de cohortes** para derivar estrategias de retención.
+Este repositorio contiene un proyecto de **análisis de datos end-to-end** utilizando el dataset **Online Retail**.  
+El objetivo es transformar datos transaccionales en insights de negocio mediante **modelado de datos, SQL analítico y visualización en Power BI**.
 
-## Objetivos del Proyecto
-* Diseñar e implementar un **Modelo en Estrella** optimizado para consultas analíticas.
-* Segmentar la base de clientes mediante lógica **RFM (Recency, Frequency, Monetary)**.
-* Analizar la retención y el ciclo de vida del cliente mediante **Cohortes**.
-* Visualizar KPIs críticos para la toma de decisiones ejecutivas.
+El proyecto se enfoca especialmente en:
 
-## Stack Tecnológico
-* **Base de Datos:** PostgreSQL (Limpieza, CTEs, Window Functions).
-* **BI & Dataviz:** Power BI (DAX avanzado, Modelado, Power Query).
-* **Dataset:** UCI Machine Learning Repository (541k+ registros).
+- **Segmentación de clientes mediante RFM**
+- **Análisis de cohortes para estudiar la retención**
+- **KPIs de ventas y comportamiento del cliente**
 
-## Modelado de Datos (Schema)
-Se implementó un esquema de estrella para garantizar el rendimiento de las medidas DAX y la simplicidad en el filtrado:
+---
 
-* **Fact Table:** `fact_sales` (Granularidad: Transacción por producto).
-* **Dimensions:** * `dim_customers` (Geografía y Segmentación).
-    * `dim_products` (Categorización y Precios).
-    * `dim_date` (Calendario extendido para Time Intelligence).
+# Dataset
 
+**Fuente:** UCI Machine Learning Repository  
+**Dataset:** Online Retail
 
+Contiene más de **500.000 transacciones** realizadas por un minorista online con sede en **Reino Unido entre 2009 y 2011**.
 
-## Análisis Técnico (SQL Highlights)
-En este repositorio encontrarás scripts de PostgreSQL que abordan:
-1.  **Data Cleaning:** Manejo de valores nulos en `CustomerID` y tratamiento de devoluciones (cantidades negativas).
-2.  **Cálculo de RFM:** Uso de `NTILE()` y `PERCENT_RANK()` para asignar scores de 1 a 5 a cada cliente.
-3.  **Análisis de Cohortes:** Determinación del mes de adquisición por cliente para calcular el % de retención mensual.
+## Variables principales
 
-## Business Insights & Recomendaciones
-* **Regla de Pareto:** Se identificó que el **Top 15% de los clientes** representan el **70% de la facturación**. *Acción: Priorizar campañas de marketing directo a este grupo.*
-* **Curva de Retención:** La retención cae un **40% en el segundo mes**. *Acción: Implementar un flujo de correos 'Win-back' tras los primeros 30 días de inactividad.*
-* **Productos Estrella:** El 5% del inventario genera el 50% de las ventas totales.
+- **Invoice** → número de factura  
+- **StockCode** → código del producto  
+- **Description** → descripción del producto  
+- **Quantity** → cantidad vendida  
+- **InvoiceDate** → fecha de la compra  
+- **Price** → precio unitario  
+- **CustomerID** → identificador del cliente  
+- **Country** → país del cliente  
 
-## Visualización en Power BI
-El dashboard final incluye:
-* **Executive Overview:** Ingresos, AOV y margen por país.
-* **Customer Research:** Matriz de segmentación RFM interactiva.
-* **Retention Lab:** Matriz de cohortes para medir el "Stickiness" del negocio.
+---
+
+# Flujo del proyecto
+
+El proyecto sigue un flujo típico de análisis de datos:
+
+1. Exploración del dataset  
+2. Limpieza y transformación de datos  
+3. Modelado dimensional (**Star Schema**)  
+4. Análisis con SQL  
+5. Segmentación de clientes (**RFM**)  
+6. Análisis de cohortes  
+7. Visualización en Power BI  
+
+---
+
+# Modelo de datos
+
+Se implementó un **modelo estrella (Star Schema)** para optimizar consultas analíticas.
+
+## Fact table
+
+**fact_sales**
+
+Granularidad: **transacción por producto**
+
+Contiene:
+
+- invoice
+- customer_id
+- stock_code
+- invoice_date
+- quantity
+- price
+- total_amount
+
+## Dimensiones
+
+**dim_customers**
+
+- customer_id  
+- country  
+
+**dim_products**
+
+- stock_code  
+- description  
+
+**dim_date**
+
+- date_id  
+- year  
+- month  
+- day  
+- quarter  
+
+Este modelo permite **consultas analíticas más eficientes y dashboards más simples de construir**.
+
+---
+
+# Análisis realizados
+
+## KPIs principales
+
+- Total Revenue  
+- Average Order Value (AOV)  
+- Total Customers  
+- Revenue mensual  
+
+## Análisis de clientes
+
+- Top clientes por revenue  
+- Segmentación **RFM**
+
+## Análisis de productos
+
+- Top productos por ventas  
+- Unidades vendidas por producto  
+
+## Retención de clientes
+
+- **Cohort analysis de clientes**
+- **Cohort analysis de revenue**
+
+---
+
+# Key Insights
+
+Algunos hallazgos obtenidos del análisis:
+
+- Un pequeño grupo de clientes genera una gran parte del revenue total.
+- Los clientes con mayor frecuencia de compra presentan también mayor valor monetario.
+- La retención de clientes disminuye significativamente después de los primeros meses.
+- Un número reducido de productos concentra gran parte de las ventas.
+
+---
+
+# Dashboard
+
+El dashboard en **Power BI** permite explorar:
+
+- evolución del revenue
+- KPIs principales
+- segmentación de clientes
+- análisis de cohortes
+- top productos
+
+*(Aquí puedes agregar una captura del dashboard)*
+
+---
+
+# SQL Skills Demonstrated
+
+Durante el proyecto se aplicaron varias técnicas de SQL:
+
+- Window Functions (`NTILE`, `FIRST_VALUE`)
+- Common Table Expressions (CTE)
+- Aggregate Functions
+- Cohort Analysis
+- Customer Segmentation (RFM)
+- Date Functions
+- Data Modeling (Star Schema)
+
+---
+
+# Tecnologías utilizadas
+
+- **PostgreSQL** → limpieza, modelado y análisis de datos  
+- **Power BI** → visualización y dashboard  
+- **Git / GitHub** → control de versiones del proyecto  
