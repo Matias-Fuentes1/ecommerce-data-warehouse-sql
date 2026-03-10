@@ -38,21 +38,21 @@ fact_sales: Contiene las ventas realizadas.
 El proyecto incluye distintos tipos de análisis de negocio.
 
 ## KPIs
-Total Revenue
-Average Order Value (AOV)
-Total Customers
-Revenue mensual
+- Total Revenue
+- Average Order Value (AOV)
+- Total Customers
+- Revenue mensual
 
 ## Clientes
-Top clientes por revenue
-Segmentación RFM
-Productos
-Top productos por ventas
-Unidades vendidas
+- Top clientes por revenue
+- Segmentación RFM
+- Productos
+- Top productos por ventas
+- Unidades vendidas
 
 ## Retención
-Cohort analysis de clientes
-Cohort analysis de revenue
+- Cohort analysis de clientes
+- Cohort analysis de revenue
 
 
 # Tecnologias utilizadas 
