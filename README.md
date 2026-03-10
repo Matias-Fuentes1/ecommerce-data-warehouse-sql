@@ -3,8 +3,8 @@ Este repositorio contiene un proyecto completo de análisis de datos de extremo 
 El objetivo del proyecto es transformar datos transaccionales en información accionable, aplicando modelado de datos, consultas analíticas y visualización para comprender el comportamiento de los clientes y el rendimiento del negocio.
 
 # Dataset
-Fuente: UCI Machine Learning Repository
-Dataset: Online Retail
+### Fuente: UCI Machine Learning Repository
+Dataset: ### Online Retail
 Contiene transacciones de un minorista online con sede en Reino Unido entre 2009 y 2011.
 ### Columnas principales:
 - Invoice → número de factura
