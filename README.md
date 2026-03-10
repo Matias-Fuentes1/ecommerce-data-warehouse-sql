@@ -1,4 +1,4 @@
-# Proyecto de Analisis de Datos de venta minorista online (SQL + PowerBI)
+# Online Retail Analytics Project (SQL + Power BI)
 Este repositorio contiene un proyecto completo de análisis de datos de extremo a extremo utilizando el dataset Online Retail.
 El objetivo del proyecto es transformar datos transaccionales en información accionable, aplicando modelado de datos, consultas analíticas y visualización para comprender el comportamiento de los clientes y el rendimiento del negocio.
 
@@ -42,14 +42,12 @@ El proyecto incluye distintos tipos de análisis de negocio.
 - Average Order Value (AOV)
 - Total Customers
 - Revenue mensual
-
 ## Clientes
 - Top clientes por revenue
 - Segmentación RFM
 - Productos
 - Top productos por ventas
 - Unidades vendidas
-
 ## Retención
 - Cohort analysis de clientes
 - Cohort analysis de revenue
