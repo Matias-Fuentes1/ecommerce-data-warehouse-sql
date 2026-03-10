@@ -35,7 +35,6 @@ fact_sales: Contiene las ventas realizadas.
 - dim_date
 
 # Análisis realizados
-El proyecto incluye distintos tipos de análisis de negocio.
 ## KPIs
 - Total Revenue
 - Average Order Value (AOV)
