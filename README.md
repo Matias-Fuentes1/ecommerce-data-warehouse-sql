@@ -53,3 +53,8 @@ Unidades vendidas
 ## Retención
 Cohort analysis de clientes
 Cohort analysis de revenue
+
+
+# Tecnologias utilizadas 
+PostgreSQL → transformación y análisis de datos
+Power BI → visualización
