@@ -4,7 +4,7 @@ El objetivo del proyecto es transformar datos transaccionales en información ac
 
 # Dataset
 ### Fuente: UCI Machine Learning Repository
-Dataset: ### Online Retail
+Dataset: Online Retail
 Contiene transacciones de un minorista online con sede en Reino Unido entre 2009 y 2011.
 ### Columnas principales:
 - Invoice → número de factura
