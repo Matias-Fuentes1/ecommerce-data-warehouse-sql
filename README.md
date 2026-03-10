@@ -27,7 +27,7 @@ Contiene transacciones de un minorista online con sede en Reino Unido entre 2009
 
 # Modelo de datos 
 Se utilizó un modelo tipo estrella para organizar las transacciones.
-Fact table
+### Fact table
 fact_sales: Contiene las ventas realizadas.
 ### Dimensiones
 - dim_customers
