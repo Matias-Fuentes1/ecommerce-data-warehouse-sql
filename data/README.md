@@ -13,7 +13,7 @@ CustomerID → identificador del cliente
 Country → país del cliente
 
 # Modelo de datos
-Se utilizó un modelo tipo Star Schema para organizar las transacciones.
+Se utilizó un modelo tipo estrella para organizar las transacciones.
 ### Fact table
 fact_sales: Contiene las ventas realizadas.
 ### Dimensiones
