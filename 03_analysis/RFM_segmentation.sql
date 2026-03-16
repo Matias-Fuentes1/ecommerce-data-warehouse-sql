@@ -13,7 +13,8 @@ WITH rfm_initial_calc AS (
             - MAX(invoice_date)::timestamp
         ) AS recency
     FROM fact_sales
-    WHERE invoice_date IS NOT NULL
+    WHERE customer_id IS NOT NULL
+    AND is_cancelled = FALSE
     GROUP BY customer_id
 ),
 rfm_score AS (
