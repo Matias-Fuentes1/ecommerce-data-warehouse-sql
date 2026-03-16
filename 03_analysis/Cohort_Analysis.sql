@@ -9,7 +9,7 @@ SELECT
         MIN(invoice_date) OVER (PARTITION BY customer_id)
     ) AS cohort_month
 FROM fact_sales
-WHERE invoice NOT LIKE 'C%'
+WHERE is_cancelled = FALSE
 AND customer_id IS NOT NULL
 ),
 cohort_period AS (
@@ -55,7 +55,7 @@ SELECT
     ) AS cohort_month,
     ROUND(total_amount::numeric, 0) AS revenue
 FROM fact_sales
-WHERE invoice NOT LIKE 'C%'
+WHERE is_cancelled = FALSE
 AND customer_id IS NOT NULL
 ),
 cohort_period AS (
