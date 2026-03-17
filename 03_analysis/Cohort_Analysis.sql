@@ -10,7 +10,7 @@ SELECT
     ) AS cohort_month
 FROM fact_sales
 WHERE is_cancelled = FALSE
-AND customer_id IS NOT NULL
+    AND customer_id IS NOT NULL
 ),
 cohort_period AS (
 SELECT
@@ -56,7 +56,7 @@ SELECT
     ROUND(total_amount::numeric, 0) AS revenue
 FROM fact_sales
 WHERE is_cancelled = FALSE
-AND customer_id IS NOT NULL
+    AND customer_id IS NOT NULL
 ),
 cohort_period AS (
 SELECT
