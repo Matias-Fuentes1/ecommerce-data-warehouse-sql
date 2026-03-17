@@ -60,3 +60,7 @@ Algunos hallazgos obtenidos del análisis:
 # Tecnologias utilizadas 
 PostgreSQL → transformación y análisis de datos
 Power BI → visualización
+
+
+
+“Los KPIs finales se calculan en Power BI para permitir análisis dinámico según filtros”
