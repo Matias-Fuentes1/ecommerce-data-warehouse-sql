@@ -11,6 +11,17 @@ WHERE customer_id IS NOT NULL
 GROUP BY customer_id;
 
 -- Poblar dimensión de productos
+-- Palabras con precio 0 que aparecen con mas frecuencia
+SELECT 
+    LOWER(TRIM(description)) AS description,
+    COUNT(*) AS frecuencia
+FROM retail_raw
+WHERE price = 0
+AND description IS NOT NULL
+GROUP BY LOWER(TRIM(description))
+ORDER BY frecuencia DESC
+LIMIT 30;
+
 INSERT INTO dim_products (stock_code, description)
 SELECT 
     stock_code,
@@ -57,3 +68,10 @@ FROM retail_raw
 WHERE customer_id IS NOT NULL
 AND stock_code IS NOT NULL
 AND invoice_date IS NOT NULL;
+-- Verificar 
+SELECT 
+    is_cancelled,
+    COUNT(*) AS total,
+    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS percentage
+FROM fact_sales
+GROUP BY is_cancelled;
