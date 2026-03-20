@@ -42,7 +42,10 @@ WHERE period BETWEEN 0 AND 12
 GROUP BY cohort_month, period
 ORDER BY cohort_month, period;
 --
+SELECT *
+FROM annual_cohort_retention
 
+    
 -- Cohort analysis: cálculo de retención de ingresos (revenue retention) por cohorte y periodo.
 CREATE OR REPLACE VIEW annual_cohort_revenue AS
 
@@ -76,3 +79,6 @@ SELECT
 FROM cohort_period
 GROUP BY cohort_month, period
 ORDER BY cohort_month, period;
+-- 
+SELECT *
+FROM annual_cohort_revenue
