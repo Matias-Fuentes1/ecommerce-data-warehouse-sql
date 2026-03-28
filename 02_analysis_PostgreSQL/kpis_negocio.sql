@@ -59,7 +59,7 @@ SELECT
 FROM fact_sales
 GROUP BY customer_id;
 -- 
-SELECT * FROM vw_customer_revenue LIMIT 2O
+SELECT * FROM vw_customer_revenue LIMIT 20;
 
 
 -- KPIs principales (Revenue, AOV y Clientes)
