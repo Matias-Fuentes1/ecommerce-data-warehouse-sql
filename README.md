@@ -51,10 +51,10 @@ frecuencia de compra
 ## Dashboards
 
 ### Página 1 — Segmentación RFM y Performance de Ventas
-![Dashboard 1](dashboards/dashboard1.png)
+![Dashboard 1](dashboards/dashboard_1.png)
 
 ### Página 2 — Cancelaciones y Recurrencia de Clientes
-![Dashboard 2](dashboards/dashboard2.png)
+![Dashboard 2](dashboards/dashboard_2.png)
 
 ## Hallazgos
 
