@@ -33,7 +33,7 @@ FROM (
     GROUP BY invoice
 ) sub;
 -- 
-SELECT * FROM vw_basket_analysis
+SELECT * FROM vw_basket_analysis;
 
 
 -- Ganancia por cliente 
@@ -63,7 +63,7 @@ JOIN dim_date d
 GROUP BY d.year, d.month
 ORDER BY d.year, d.month;
 -- 
-SELECT * FROM vw_monthly_revenue
+SELECT * FROM vw_monthly_revenue;
 
 
 -- Revenue perdido (cancelaciones)
@@ -82,7 +82,7 @@ SELECT
 FROM fact_sales
 WHERE is_cancelled = TRUE;
 --
-SELECT * FROM vw_revenue_perdido
+SELECT * FROM vw_revenue_perdido;
 
 -- Frecuencia de compra (por cliente)
 DROP VIEW IF EXISTS vw_frecuencia_clientes;
