@@ -1,5 +1,5 @@
 -- Crear tabla base para almacenar los datos crudos del dataset de retail
-CREATE TABLE retail_raw (
+CREATE TABLE IF NOT EXISTS retail_raw (
     invoice        VARCHAR(20),
     stock_code     VARCHAR(20),
     description    TEXT,
