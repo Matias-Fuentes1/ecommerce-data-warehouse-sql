@@ -48,6 +48,7 @@ CREATE TABLE fact_sales (
     quantity INTEGER,
     price NUMERIC(10,2),
     total_amount NUMERIC(12,2),
+    is_cancelled   BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (customer_id) REFERENCES dim_customers(customer_id),
     FOREIGN KEY (stock_code) REFERENCES dim_products(stock_code)
 );
