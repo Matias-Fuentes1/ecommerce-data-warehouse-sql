@@ -29,25 +29,11 @@ FROM (
         COUNT(DISTINCT stock_code) AS product_distinct,
         SUM(total_amount) AS order_revenue
     FROM fact_sales
+    WHERE is_cancelled = FALSE
     GROUP BY invoice
 ) sub;
 -- 
 SELECT * FROM vw_basket_analysis
-
-
--- Ganancia por mes y año 
-DROP VIEW IF EXISTS vw_monthly_revenue;
-CREATE VIEW vw_monthly_revenue AS
-SELECT 
-    d.year,
-    d.month,
-    SUM(f.total_amount) AS ganancia
-FROM fact_sales f
-JOIN dim_date d 
-    ON f.invoice_date = d.date_id
-GROUP BY d.year, d.month;
--- 
-SELECT * FROM vw_monthly_revenue
 
 
 -- Ganancia por cliente 
