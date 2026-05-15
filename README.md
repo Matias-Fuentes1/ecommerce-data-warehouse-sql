@@ -1,112 +1,90 @@
-# Online Retail Analytics Project (SQL + Power BI)
+# Online Retail UCI · Retención de Clientes y Segmentación RFM
 
-Proyecto de análisis de datos de extremo a extremo sobre un minorista 
-online del Reino Unido. Partiendo de datos transaccionales crudos, se 
-construyó un data warehouse en PostgreSQL y un dashboard interactivo en 
-Power BI orientado a la toma de decisiones comerciales.
+## ¿De qué se trata?
 
-## Objetivo
+Este es uno de mis proyectos de portfolio. Lo armé para practicar análisis end-to-end con SQL y Power BI sobre datos reales de e-commerce, no sobre datasets sintéticos armados para que todo cierre bien.
 
-Identificar oportunidades de crecimiento, segmentos de clientes clave y 
-patrones de retención a partir del comportamiento de compra real entre 
-2009 y 2011.
+La pregunta que guió todo el análisis fue una sola: **¿por qué los clientes no vuelven a comprar, y quiénes son los que más revenue generan?**
+
+Me llevó aproximadamente 4 semanas. Lo más difícil no fue técnico: fue decidir qué nivel de limpieza era suficiente para no distorsionar el análisis, y qué métricas realmente respondían la pregunta central. Descarté varias visualizaciones que se veían bien pero no aportaban nada concreto a las decisiones de negocio.
+
+---
 
 ## Dataset
 
-- **Fuente:** [UCI Machine Learning Repository - Online Retail](https://archive.ics.uci.edu/ml/datasets/online+retail)
-- **Alcance:** Transacciones históricas (Reino Unido) entre 2009 y 2011
-- **Desafíos resueltos:** valores nulos en `CustomerID`, transacciones 
-canceladas (prefijo `'C'`), registros con precios o cantidades negativos
+Descargado desde [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/online+retail). Transacciones históricas de un minorista online del Reino Unido entre 2009 y 2011.
 
-## Tecnologías
+| Tabla | Qué tiene |
+|---|---|
+| Transacciones | ~500.000 registros con fecha, producto, cliente, cantidad y precio |
+| Clientes | CustomerID con datos geográficos |
+| Productos | StockCode y descripción |
 
-| Herramienta | Uso |
-|-------------|-----|
-| PostgreSQL | ETL, modelado relacional, consultas analíticas |
-| SQL | Window functions, cohortes, segmentación RFM, vistas |
-| Power BI | Modelado DAX, visualización interactiva |
+Período cubierto: 2009–2011. El análisis se centra en retención por cohortes y segmentación RFM.
 
-## Modelo de Datos (Star Schema)
+---
 
-Se transformó el dataset original en un esquema estrella para optimizar 
-el rendimiento en Power BI:
+## Qué hice con los datos antes de analizar
 
-- **Fact table:** `fact_sales` — transacciones, ingresos, cantidades
-- **`dim_customers`** — identificadores y datos geográficos
-- **`dim_products`** — catálogo y descripciones
-- **`dim_date`** — jerarquías temporales (año, mes, trimestre, día)
+El dataset tenía varios problemas que había que resolver antes de tocar cualquier métrica:
 
-## Análisis Realizados
+**Valores nulos:** Una parte de las transacciones no tenía `CustomerID`. Las excluí del análisis de retención y RFM porque sin identificador de cliente no hay forma de rastrear comportamiento. Las mantuve para el análisis de revenue total.
 
-- **Segmentación RFM** — clasificación de clientes por Recencia, 
-Frecuencia y Valor Monetario usando window functions en SQL
-- **Cohort Analysis** — tasa de retención mensual por cohorte de primera 
-compra (períodos 0 a 12)
-- **Análisis de Pareto** — concentración de ingresos por cliente
-- **Análisis de cancelaciones** — impacto real de devoluciones sobre el 
-margen neto por segmento de cliente
-- **KPIs:** Revenue total, AOV, clientes activos, tasa de recompra, 
-frecuencia de compra
+**Transacciones canceladas:** Los pedidos cancelados tienen el prefijo `'C'` en el `InvoiceNo`. Los separé del flujo principal para analizarlos de forma independiente — incluirlos en el revenue hubiera inflado los números sin sentido.
 
-## Dashboards
+**Precios y cantidades negativos:** Aparecen en devoluciones y ajustes contables. Los filtré antes de calcular cualquier KPI de rentabilidad.
 
-### Página 1 — Segmentación RFM y Performance de Ventas
-![Dashboard 1](dashboards/dashboard_1.png)
+**Modelo de datos:** Transformé el dataset plano en un esquema estrella con una tabla de hechos (`fact_sales`) y dimensiones de clientes, productos y fechas. Eso fue lo que permitió que Power BI funcionara sin explotar con medio millón de filas.
 
-### Página 2 — Cancelaciones y Recurrencia de Clientes
-![Dashboard 2](dashboards/dashboard_2.png)
+**Un error que encontré en el camino:** Al calcular el revenue por segmento RFM, los totales no cerraban con el revenue general. El problema era que algunos `CustomerID` aparecían duplicados con transacciones en distintas monedas. Lo resolví filtrando solo transacciones en GBP antes de construir el modelo.
 
-## Hallazgos
+---
 
-**Concentración de ingresos**
-El cliente de mayor valor generó $1.13M en el período, y los 10 
-principales clientes concentran una porción desproporcionada del revenue 
-total. La curva de Pareto confirma una dependencia alta en un grupo 
-reducido de compradores de alto valor.
+## Lo que encontré
 
-**Retención crítica en el primer mes**
-La tasa de retención cae de 100% a aproximadamente 20% entre el período 
-0 y el período 1, independientemente de la cohorte. Eso significa que 4 
-de cada 5 clientes no vuelven a comprar tras su primera transacción. La 
-ventana de fidelización es el primer mes.
+### 4 de cada 5 clientes no vuelven a comprar
 
-**Cancelaciones: alto volumen, bajo impacto económico**
-Aproximadamente 1 de cada 5 pedidos es cancelado (~17%), pero el impacto 
-en ingresos netos es de solo ~2%. Las cancelaciones se concentran en 
-pedidos de bajo valor, con el segmento "Otros" generando la mayor pérdida 
-absoluta.
+Ese es el problema central. La retención cae de 100% a aproximadamente 20% entre la primera y segunda compra, sin importar la cohorte ni el período del año. El primer mes es la ventana crítica: si el cliente no vuelve en ese lapso, probablemente no vuelve nunca.
 
-**Clientes Campeones vs Leales**
-Los Campeones superan consistentemente a los Leales en ingresos mensuales, 
-con una brecha que se amplía hacia fin de año (pico en octubre-noviembre). 
-Esto sugiere estacionalidad en el comportamiento de los compradores de 
-mayor valor.
+| Período | Retención promedio |
+|---|---|
+| Mes 0 (primera compra) | 100% |
+| Mes 1 | ~20% |
+| Mes 3 | ~10% |
+| Mes 6+ | <8% |
 
-## Recomendaciones
+### El revenue depende de un grupo muy pequeño de clientes
 
-1. **Programa de retención en el primer mes** — dado que la caída más 
-grande ocurre entre la primera y segunda compra, una campaña de 
-reactivación temprana (email, descuento en segunda compra) tiene el mayor 
-potencial de impacto.
+La curva de Pareto es pronunciada. El cliente de mayor valor generó $1.13M en el período, y los 10 principales concentran una porción desproporcionada del revenue total. Alta dependencia en un grupo reducido — eso es riesgo de concentración.
 
-2. **Proteger a los Campeones** — 1.112 clientes en ese segmento generan 
-una fracción desproporcionada del revenue. Un programa de fidelización 
-diferenciado para ese grupo reduce el riesgo de concentración.
+### Las cancelaciones son muchas pero no destruyen el margen
 
-3. **Investigar cancelaciones por producto** — si ciertos productos 
-concentran las cancelaciones, una revisión de calidad o descripción del 
-producto puede reducir el volumen sin afectar la demanda real.
+Aproximadamente 1 de cada 5 pedidos se cancela (~17%), pero el impacto en ingresos netos es de solo ~2%. Las cancelaciones se concentran en pedidos de bajo valor. El problema no es económico — es operativo.
 
-4. **Capitalizar la estacionalidad** — el pico de octubre-noviembre en 
-clientes de alto valor sugiere preparar campañas de retención y cross-sell 
-antes de ese período, no durante.
+### Los Campeones tienen comportamiento estacional
 
-## Estructura del Repositorio
-* /sql: Scripts de creación de tablas, vistas y análisis de cohortes.
-* /data: Documentación sobre el origen de los datos.
-* /dashboard: Archivo .pbix con las visualizaciones finales.
+Los clientes del segmento Champion superan consistentemente a los Loyal en revenue mensual, con una brecha que se amplía en octubre-noviembre. Eso sugiere que hay una ventana de oportunidad antes del Q4 para activar retención diferenciada.
 
-## Cómo Utilizar este Repositorio
-1. Datos: Descarga el dataset de la fuente UCI y cárgalo en tu instancia de PostgreSQL.
-2. Scripts SQL: Ejecuta los scripts para crear el esquema, limpiar los datos y generar las vistas analíticas.
-3. Power BI: Abre el archivo .pbix y actualiza la conexión a tu base de datos para visualizar el dashboard.
+---
+
+## Qué haría con esta información
+
+Antes de cualquier otra cosa, activaría una campaña de reactivación en el primer mes post-compra. Es el punto donde se pierde el 80% de los clientes — cualquier intervención ahí tiene más impacto que optimizar cualquier otra etapa del funnel.
+
+Después de eso, el movimiento más directo para proteger el revenue sería armar un programa de fidelización específico para los Campeones. Son 1.112 clientes que generan una fracción desproporcionada del total — perder diez de ellos duele más que perder cien clientes promedio.
+
+---
+
+## El dashboard
+
+Dos páginas. Diseñado para que alguien que no estuvo en el análisis entienda el problema en 30 segundos.
+
+**Página 1 — Segmentación RFM y Performance de Ventas:** matriz RFM interactiva, KPIs de revenue y clientes activos, curva de Pareto, tendencia mensual por segmento.
+
+**Página 2 — Retención y Cancelaciones:** heatmap de cohortes con retención mensual, impacto de cancelaciones sobre revenue neto, tasa de recompra por segmento.
+
+**Paleta:** rojo para retención crítica y pérdidas, verde para segmentos de alto valor, azul para revenue neutro — la misma lógica en todos los gráficos.
+
+---
+
+*Herramientas: PostgreSQL · SQL · Power BI · Dataset: UCI Machine Learning Repository (Online Retail) · Proyecto de portfolio*
