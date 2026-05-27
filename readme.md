@@ -38,6 +38,13 @@ El dataset original era una tabla plana con varios problemas que había que reso
 ### 4 de cada 5 clientes no vuelven a comprar
 La retención cae drásticamente del 100% a aproximadamente un 20% entre la primera y la segunda compra, sin importar la cohorte ni el período del año. El primer mes es la ventana crítica: si el cliente no vuelve en ese lapso, lo perdiste.
 
+| Período | Retención promedio |
+|---|---|
+| Mes 0 (primera compra) | 100% |
+| Mes 1 | ~20% |
+| Mes 3 | ~10% |
+| Mes 6+ | <8% |
+
 ### Dependencia absoluta de los clientes recurrentes (97%)
 A pesar de la fuga del primer mes, el negocio se sostiene gracias a la recompra: el **97% de los ingresos totales** proviene de usuarios recurrentes. Además, el cliente que logra superar la barrera del tercer mes se vuelve ultra fiel, alcanzando una **frecuencia promedio de 7.49 pedidos**.
 
