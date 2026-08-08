@@ -17,9 +17,9 @@ WITH rfm_initial_calc AS (
 rfm_score AS (
     SELECT 
         r.*,
-        NTILE(4) OVER (ORDER BY monetary_value DESC) AS m_score,
-        NTILE(4) OVER (ORDER BY frequency DESC) AS f_score,
-        NTILE(4) OVER (ORDER BY recency ASC) AS r_score
+        NTILE(4) OVER (ORDER BY monetary_value ASC) AS m_score,
+        NTILE(4) OVER (ORDER BY frequency ASC) AS f_score,
+        NTILE(4) OVER (ORDER BY recency DESC) AS r_score
     FROM rfm_initial_calc r
 )
 SELECT
