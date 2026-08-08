@@ -60,7 +60,7 @@ Los clientes del segmento Champion superan consistentemente a los Loyal en reven
 
 1.  **Campaña de reactivación agresiva en el primer mes post-compra:** Es el punto exacto donde se pierde el 80% de los clientes. Cualquier mejora en esa ventana va a mover la aguja del LTV mucho más que optimizar cualquier otra cosa.
 2.  **Blindar al Top 10 y al segmento Champion:** Son los que concentran el revenue. Perder a diez de ellos impacta más que perder a cien clientes promedio. Diseñaría un programa de beneficios exclusivos antes de que arranque octubre para aprovechar su estacionalidad.
-3.  **Auditar el proceso de checkout/bajos montos:** Como el 17% de las cancelaciones son de tickets bajos, investigaría si hay problemas con los métodos de pago en compras chicas o si se están cayendo carritos por costos de envío inesperados.
+3.  **Auditar el proceso de checkout/bajos montos:** El 17% de los pedidos totales se cancela, pero eso solo representa un 2% de pérdida de ingresos — la brecha entre esos dos números indica que las cancelaciones se concentran en tickets bajos. Auditaría el checkout específicamente en compras chicas.
 
 ---
 
