@@ -58,9 +58,16 @@ Los clientes del segmento Champion superan consistentemente a los Loyal en reven
 
 ## Qué haría con esta información
 
-1.  **Campaña de reactivación agresiva en el primer mes post-compra:** Es el punto exacto donde se pierde el 80% de los clientes. Cualquier mejora en esa ventana va a mover la aguja del LTV mucho más que optimizar cualquier otra cosa.
-2.  **Blindar al Top 10 y al segmento Champion:** Son los que concentran el revenue. Perder a diez de ellos impacta más que perder a cien clientes promedio. Diseñaría un programa de beneficios exclusivos antes de que arranque octubre para aprovechar su estacionalidad.
-3.  **Auditar el proceso de checkout/bajos montos:** El 17% de los pedidos totales se cancela, pero eso solo representa un 2% de pérdida de ingresos — la brecha entre esos dos números indica que las cancelaciones se concentran en tickets bajos. Auditaría el checkout específicamente en compras chicas.
+## Recomendaciones — Google Merchandise Store
+
+1. **Optimizar la navegación y carga de la Home/Landings**
+El 78% de los usuarios abandona antes de ver un solo producto — la mayor fuga de todo el funnel. Es urgente auditar tiempos de carga en mobile y revisar si las campañas de Paid Search están dirigiendo tráfico a landings relevantes, dado que es el canal con la conversión más baja (0.98%) y el mayor volumen pago del sitio.
+
+2. **Potenciar la red de Referral**
+Es el canal con mejor tasa de conversión (1.66% vs. 0.98% de Paid Search). Expandir alianzas y sitios afiliados es una vía de crecimiento más eficiente en conversión que seguir escalando pauta paga tradicional — a validar con datos de costo por canal, que no están disponibles en este dashboard, antes de reasignar presupuesto.
+
+3. **Mecanismo de recuperación de carritos abandonados**
+Con un 68.14% de abandono, un gatillo automatizado (email o push) con incentivo por tiempo limitado en los primeros 30 minutos apunta a recuperar usuarios que ya mostraron intención de compra — el segmento de mayor probabilidad de conversión de todo el funnel.
 
 ---
 
